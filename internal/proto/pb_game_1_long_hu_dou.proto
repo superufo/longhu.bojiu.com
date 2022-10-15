@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+option go_package = "/proto";
+
+//进入游戏
+message m_game_1_enter_game_tos{
+  optional int32  game_id = 1;           //0大厅1龙虎2红黑百家乐
+  optional int32  room    = 2;         	 //房间
+  optional int32  desk    = 3;           //桌子
+}
+message m_game_1_enter_game_toc{
+  optional int32  game_id = 1;           //0大厅1龙虎2红黑百家乐
+  optional int32  room    = 2;         	 //普通房间就是房间ID
+  optional int32  desk    = 3;           //桌子
+}
+
+
+//进入游戏请求房间数据
+message m_game_1_enter_game_req_tos{
+		optional int32 game_id = 1;									//游戏id
+}
+//进入游戏请求房间数据
+message m_game_1_enter_game_req_toc{
+		repeated p_room_1_room_info room = 1;							//所有房间
+}
+message p_room_1_room_info{
+        optional int32  room_id = 1;								//房间ID
+		optional int32   state = 2;									//房间状态
+}
+
+
+//进入房间
+message m_game_1_enter_room_tos{
+		optional int32 room_id = 1;									//房间id
+}
+//进入房间
+message m_game_1_enter_room_toc{
+		repeated p_room_1_desk_info desk = 1;						//所有桌子
+}
+
+
+message p_room_1_desk_info{
+        optional int32  desk_id = 1;								//桌子ID
+		optional int32   state = 2;									//桌子状态
+		repeated int32   all_result = 3;							//桌子录单
+}
+
+//进入桌子
+message m_game_1_enter_desk_tos{
+		optional int32 room_id = 1;									//房间id
+		optional int32 desk_id = 2;									//桌子id
+}
+
+//进入桌子告诉自己基本信息
+message m_game_1_enter_desk_toc{
+		optional int32 desk_id = 1;									//桌子id
+		optional string number = 2;									//当前局号
+		optional int32 status = 3;									//当前游戏的状态0准备阶段空闲1开始投注2停止投注开奖取值
+		optional int32 next_time = 4;     							//下一个状态变化的时间
+		repeated int32 all_result = 5;								//路单10和l龙2虎
+		repeated p_game_1_bets_area bets_area = 6;     				//每个区域的信息
+}
+
+
+//离开桌子
+message m_game_1_leave_desk_tos{
+		optional int32 room_id = 1;									//房间id
+		optional int32 desk_id = 2;									//桌子id
+}
+
+//进入桌子告诉自己基本信息
+message m_game_1_leave_desk_toc{
+		optional int32 room_id = 1;									//房间id
+		optional int32 desk_id = 2;									//桌子id
+}
+
+message p_game_1_bets_area{
+        optional int32   area  = 1;									//牌桌投注区域
+		optional float   odds = 2;									//赔率
+		optional int64   my_bets = 3;								//我的下注
+		optional int64   all_bets = 4;								//前端最终该区域筹码显示这个值
+}
+
+//下注先飞筹码
+message m_game_1_bets_tos{
+        optional int32   area  = 1;									//下注区域
+		optional int64   chip = 2;									//下注数量
+		optional int32   room = 3;									//哪个房间
+		optional int32   desk_id = 4;								//哪个桌子
+}
+message m_game_1_bets_toc{
+        optional int32   area = 1;									//下注区域
+		optional int64   my_all_chip = 2;							//该区域你的下注总额
+		optional int64   my_chip = 3;								//我自己剩下的筹码,
+		optional int64   chip = 4;									//下注数量
+}
+
+
+//状态改变0->1,1->2
+message m_game_1_change_state_toc{
+		optional int32   status = 1;									//0准备阶段空闲1开始下注2结束投注开奖取值
+		optional int32 next_time = 2;     							//下一个状态变化的时间
+}
+
+//开牌结果
+message m_game_1_end_result_toc{
+		optional int32  room = 1;         	 //房间
+		optional int32  desk = 2;           //桌子
+		optional int32 	  result = 3;						//1龙赢2和3虎赢
+		optional int32 	  long = 4;							//开奖结果
+		optional int32 	  hu = 5;							//开奖结果
+		optional int32 	  isbat = 6;						//0没下注1有下注  没下注的玩家 after_money 是0
+		optional int64  my_award = 7;							//我的奖金/赢了多少
+		optional int64  after_money = 8;						//我剩余的钱
+}
+
+//当新的开始当前局数2->0
+message m_game_1_start_new_bets_toc{
+		optional string   number = 1;									//当前局数
+		optional int32   status = 2;									//当前状态0是空闲1是开始下注
+		optional int32 next_time = 3;     								//下一个状态变化的时间
+		repeated p_game_1_bets_area area = 4;							//当前区域信息
+}
+

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package = "/pb";
+
+service ForwardMsg {
+  //双向流模式，能推能拉
+  rpc PPStream (stream StreamRequestData) returns (stream StreamResponseData);
+}
+
+message StreamRequestData {
+  string clientId = 1;
+  uint32  msg = 2;  // 消息编号
+  bytes secret = 3; //
+  bytes  serialNum =4;
+  bytes  data = 5; // 数据
+}
+
+message StreamResponseData {
+  string clientId = 1; //玩家长连接id
+  bool bAllUser = 2; //全服在线玩家广播
+  repeated string uids = 3; //广播给指定玩家
+  uint32 msg = 4; // 消息编号
+  bytes data = 5; // 数据
+}

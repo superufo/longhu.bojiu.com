@@ -1,0 +1,9 @@
+//通用错误
+syntax = "proto3";
+
+option go_package = "/proto";
+
+message m_error_toc{
+        optional int32   error_code = 1;
+        optional string  args       = 2;
+}

@@ -1,0 +1,12 @@
+{"level":"info","ts":"2022-06-28 13:21:13.529","caller":"mysql/mysql_lib.go:47","msg":"mysql-master connect success\r\n"}
+{"level":"info","ts":"2022-06-28 13:21:13.631","caller":"mysql/mysql_lib.go:79","msg":"mysql-slave1 connect success\r\n"}
+{"level":"info","ts":"2022-06-28 13:21:13.632","caller":"cmd/main.go:29","msg":"龙虎斗服务器开始........"}
+{"level":"info","ts":"2022-06-28 13:21:13.638","caller":"etcdv3/registrar.go:83","msg":"action,register"}
+{"level":"info","ts":"2022-06-28 13:21:13.639","caller":"cmd/main.go:48","msg":"main","regKey":["ws://127.0.0.1:17901"],"trace":"main.main\n\tE:/go_project/bjgame_server/src/longhu.bojiu.com/cmd/main.go:48\nruntime.main\n\tC:/Go/go1.18.2/src/runtime/proc.go:250"}
+{"level":"info","ts":"2022-06-28 13:21:13.639","caller":"server/stream_server.go:381","msg":"Run","addr":"127.0.0.1:17901"}
+{"level":"info","ts":"2022-06-28 18:02:34.956","caller":"mysql/mysql_lib.go:47","msg":"mysql-master connect success\r\n"}
+{"level":"info","ts":"2022-06-28 18:02:35.065","caller":"mysql/mysql_lib.go:79","msg":"mysql-slave1 connect success\r\n"}
+{"level":"info","ts":"2022-06-28 18:02:35.065","caller":"cmd/main.go:29","msg":"龙虎斗服务器开始........"}
+{"level":"info","ts":"2022-06-28 18:02:35.069","caller":"etcdv3/registrar.go:83","msg":"action,register"}
+{"level":"info","ts":"2022-06-28 18:02:35.070","caller":"cmd/main.go:48","msg":"main","regKey":["ws://127.0.0.1:17901"],"trace":"main.main\n\tE:/go_project/bjgame_server/src/longhu.bojiu.com/cmd/main.go:48\nruntime.main\n\tC:/Go/go1.18.2/src/runtime/proc.go:250"}
+{"level":"info","ts":"2022-06-28 18:02:35.070","caller":"server/stream_server.go:381","msg":"Run","addr":"127.0.0.1:17901"}
